@@ -103,7 +103,7 @@ with open("nashe.txt" , 'w') as f:
     f.write(start)
     total = 0
     for i in temp2:
-        f.write(f'{i[0]} \t {i[1]} \t {i[2]} \n')
+        f.write(f'{i[0]}\t\t\t{i[1]}\t\t\t{i[2]} \n')
         total += int(i[2])
     
     f.write(f'''********************************************
