@@ -39,7 +39,7 @@ int main(){
         }
         else{
             printf("x is the greatest");
-
+        
         } 
     }
     
