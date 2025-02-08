@@ -44,28 +44,28 @@ int main(){
     
     // int temp;
 
-    // // //bubble sort ascending
-    // // for(int i = 0 ; i < length ; i++){
-    // //     int r = 1 ;
-    // //     int l = 0;
-    // //     while (r < length)
-    // //     {
+    // //bubble sort ascending
+    // for(int i = 0 ; i < length ; i++){
+    //     int r = 1 ;
+    //     int l = 0;
+    //     while (r < length)
+    //     {
 
-    // //         if(array[l] >= array[r]){
-    // //             temp = array[r];
-    // //             array[r] = array[l];
-    // //             array[l] = temp;
-    // //         }
+    //         if(array[l] >= array[r]){
+    //             temp = array[r];
+    //             array[r] = array[l];
+    //             array[l] = temp;
+    //         }
             
             
             
-    // //         l++;
-    // //         r++;
-    // //     }
+    //         l++;
+    //         r++;
+    //     }
         
-    // // }
+    // }
 
-    // //bubble sort descending
+    //bubble sort descending
     // for(int i = 0 ; i < length ; i++){
     //     int r = 1 ;
     //     int l = 0;
@@ -138,32 +138,32 @@ int main(){
 
     //Q1
 
-    int number;
-    printf("enter the number of elements you want in array: ");
-    scanf("%d" , &number);
+    // int number;
+    // printf("enter the number of elements you want in array: ");
+    // scanf("%d" , &number);
 
-    int array[number];  
-    int length = sizeof(array) / sizeof(array[0]);
+    // int array[number];  
+    // int length = sizeof(array) / sizeof(array[0]);
 
-    for(int i = 0; i < number; i++){
+    // for(int i = 0; i < number; i++){
 
-        scanf("%d" , &array[i]);
+    //     scanf("%d" , &array[i]);
         
-    }   
+    // }   
 
-    int maxx = array[0];
-    int minn = array[0];
+    // int maxx = array[0];
+    // int minn = array[0];
 
-    for(int i = 0 ; i < number ; i++){
-        if(maxx <= array[i]){
-            maxx = array[i];
-        }
-        if(minn >= array[i]){
-            minn = array[i];
-        }
-    }
+    // for(int i = 0 ; i < number ; i++){
+    //     if(maxx <= array[i]){
+    //         maxx = array[i];
+    //     }
+    //     if(minn >= array[i]){
+    //         minn = array[i];
+    //     }
+    // }
 
-    printf("The minimum is: %d \n The maximum is: %d\n", minn , maxx);
+    // printf("The minimum is: %d \n The maximum is: %d\n", minn , maxx);
 
 
     //Q2
