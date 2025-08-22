@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/aryaupatil/Random Shit/ClassProjs/data Structures",
+      "program": "/Users/aryaupatil/Random Shit/ClassProjs/data Structures/build/Debug/outDebug"
+    }
+  ]
+}
