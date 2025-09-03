@@ -73,6 +73,44 @@ bool isEmpty(struct Node* head){
     }
 }
 
+void infixToPostfix(char* infix, char* postfix, struct Node* stack) {
+    int i = 0, k = 0;
+    char c;
+
+    while ((c = infix[i++]) != '\0') {
+        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
+            
+            postfix[k++] = c;
+        }
+        else if (c == '(') {
+            Spush(stack, c);
+        }
+        else if (c == ')') {
+            while (!isEmpty(stack) && Speek(stack) != '(') {
+                postfix[k++] = Speek(stack);
+                Spop(stack);
+            }
+            Spop(stack); 
+        }
+        else { 
+            while (!isEmpty(stack) && precedence(Speek(stack)) >= precedence(c)) {
+                postfix[k++] = Speek(stack);
+                Spop(stack);
+            }
+            Spush(stack, c);
+        }
+    }
+
+    
+    while (!isEmpty(stack)) {
+        postfix[k++] = Speek(stack);
+        Spop(stack);
+    }
+
+    postfix[k] = '\0'; 
+}
+
+
 int main(){
 
     struct Node* stackOne;
@@ -110,6 +148,26 @@ int main(){
         case 5:
             flag = false;
             break;
+        case 6:
+    {
+        char infix[100], postfix[100];
+        printf("Enter infix expression: ");
+        scanf("%s", infix);
+        struct Node* exprStack = createStack();
+        infixToPostfix(infix, postfix, exprStack);
+        printf("Postfix expression: %s\n", postfix);
+        
+        // free exprStack
+        struct Node* tmp;
+        while(exprStack->next) {
+            tmp = exprStack->next;
+            free(exprStack);
+            exprStack = tmp;
+        }
+        free(exprStack);
+    }
+    break;
+
         default:
             break;
         }
