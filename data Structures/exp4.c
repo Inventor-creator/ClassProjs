@@ -19,18 +19,18 @@ void freeQueue(struct queueNode* start){
 
 struct queueNode* createList(){
     struct queueNode * temp = (struct queueNode *)malloc(sizeof(struct queueNode));
+    temp->value = 0;
+    temp->next = NULL;
     return temp;
 }
 
 void enqueue(struct queueNode* start , int insertVal){
     struct queueNode * temp2;
-    if(!start->value){
-
+    if(start->value == 0 && start->next == NULL){ 
         start->value = insertVal;
         start->next = NULL;
     }
     else{
-       
         struct queueNode* temp = start;
         while(temp->next != NULL){
             temp = temp->next;
@@ -45,11 +45,9 @@ void enqueue(struct queueNode* start , int insertVal){
 void displayElements(struct queueNode* start){
     struct queueNode* temp = start;
     while(temp != NULL){
-
         printf("%d \n" , temp->value);
         temp = temp->next;
     }
-
 }
 
 int displayRear(struct queueNode* start){
@@ -58,9 +56,7 @@ int displayRear(struct queueNode* start){
     while(temp->next != NULL){
         temp = temp->next;
     }
-
     return temp->value;
-
 }
 
 int displayFront(struct queueNode* start){
@@ -69,22 +65,21 @@ int displayFront(struct queueNode* start){
 
 int dequeue(struct queueNode** start){
     struct queueNode * temp;
+    int val;
     if((*start)->next){
-        temp = (*start);
-        start = &(*start)->next;
-
+        temp = *start;
+        val = temp->value;
+        *start = (*start)->next;
         free(temp);
     }
     else{
+        val = (*start)->value;
         (*start)->value = 0;
-
     }
-    return 0;
+    return val;
 }
 
 int main(){
-
-    //implement dynamic queues
     struct queueNode* queue1 = createList();
     int flag = 1;
     int inpVal;
@@ -104,11 +99,9 @@ int main(){
                 break;
             case 3:
                 printf("The front of the queue is: %d \n" , displayFront(queue1));
-
                 break;
             case 4:
                 printf("The rear of the queue is: %d \n" , displayRear(queue1));
-
                 break;
             case 5:
                 printf("\n");
@@ -122,11 +115,6 @@ int main(){
                 break;
         }
     }
-
-
-
     freeQueue(queue1);
-
-
     return 0;
 }
