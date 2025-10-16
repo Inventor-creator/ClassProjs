@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16ef9123-d798-44a8-b2dc-6cf7947135b7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../DBMS/Untitled.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../../DBMS/Untitled.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../exp6/exp6/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../exp6/exp6/src/Main.java" afterDir="false" />
+    <list default="true" id="ce6d2595-32ba-49f3-8e81-df90d6b7150b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../threads/threads.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../tutsomethingawt/tutsomethingawt.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../data Structures/exp66.c" beforeDir="false" afterPath="$PROJECT_DIR$/../../data Structures/exp66.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Exp8/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Exp8/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,15 +20,17 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
   "associatedIndex": 0
 }]]></component>
-  <component name="ProjectId" id="32Dddkgsorwjtw6L74f47bPndj3" />
+  <component name="ProjectId" id="348FW4EqLo0NAhONF7i9pONMBtH" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -33,25 +38,13 @@
     "onboarding.tips.debug.path": "/Users/aryaupatil/Random Shit/ClassProjs/java/tut7/src/Main.java"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="16ef9123-d798-44a8-b2dc-6cf7947135b7" name="Changes" comment="" />
-      <created>1756959165308</created>
+      <changelist id="ce6d2595-32ba-49f3-8e81-df90d6b7150b" name="Changes" comment="" />
+      <created>1760587320971</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1756959165308</updated>
+      <updated>1760587320971</updated>
     </task>
     <servers />
   </component>
