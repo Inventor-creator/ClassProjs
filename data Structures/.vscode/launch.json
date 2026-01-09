@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/aryaupatil/Random Shit/ClassProjs/data Structures",
-      "program": "/Users/aryaupatil/Random Shit/ClassProjs/data Structures/build/Debug/outDebug"
+      "cwd": "/Users/aryaupatil/Random Shit/ClassProjs/data Structures/extra exp",
+      "program": "/Users/aryaupatil/Random Shit/ClassProjs/data Structures/extra exp/build/Debug/outDebug"
     }
   ]
 }

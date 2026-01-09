@@ -6,6 +6,14 @@ CREATE TABLE Users(
 
 );
 
+CREATE TABLE UserAuditLog (
+    logId SERIAL PRIMARY KEY ,
+    userName VARCHAR(20),
+    actionTaken VARCHAR(20),
+    logDate VARCHAR(8)
+);
+
+
 CREATE TABLE Playlists(
 	playListId INT ,
 	playlistName VARCHAR(20),
@@ -53,11 +61,12 @@ CREATE TABLE delTable(
 DROP TABLE delTable;
 
 
-DROP TABLE Songs;
-DROP TABLE Album;
-DROP TABLE Artist;
-DROP TABLE Playlists;
-DROP TABLE Users;
+-- DROP TABLE Songs;
+-- DROP TABLE Album;
+-- DROP TABLE Artist;
+-- DROP TABLE Playlists;
+-- DROP TABLE Users;
+-- DROP TABLE UserAuditLog;
 
 
 -- Inserting into stuff now
@@ -258,3 +267,100 @@ JOIN Album a ON s.albumId = a.albumId
 JOIN Artist ar ON a.artistId = ar.artistId;
 
 SELECT * FROM SongsByGenre;
+
+--Exp7 
+
+CREATE TABLE delTable(
+    delTableId INT PRIMARY KEY,
+    delTableName VARCHAR(50)
+);
+
+
+CREATE FUNCTION log_album_deletion()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO delTable(delTableName)
+    SELECT title FROM OLD;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_after_album_delete
+AFTER DELETE ON album
+FOR EACH ROW
+EXECUTE FUNCTION log_album_deletion();
+
+
+CREATE FUNCTION prevent_artist_delete()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF EXISTS (SELECT 1 FROM album WHERE artistid = OLD.artistid) THEN
+        RAISE NOTICE 'Cannot delete artist — albums still exist for this artist.';
+        RETURN NULL; 
+    END IF;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_prevent_artist_delete
+BEFORE DELETE ON artist
+FOR EACH ROW
+EXECUTE FUNCTION prevent_artist_delete();
+
+
+CREATE FUNCTION set_playlist_date()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO playlists(playlistid, playlistname, creationdate, userid)
+    VALUES (
+        NEW.playlistid,
+        NEW.playlistname,
+        TO_CHAR(CURRENT_DATE, 'YYYYMMDD'),
+        NEW.userid
+    );
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_set_playlist_date
+BEFORE INSERT ON playlists
+FOR EACH ROW
+EXECUTE FUNCTION set_playlist_date();
+
+
+
+CREATE FUNCTION update_album_genre()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.genre IS DISTINCT FROM OLD.genre THEN
+        UPDATE album
+        SET genre = NEW.genre
+        WHERE artistid = NEW.artistid;
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_update_album_genre
+AFTER UPDATE ON artist
+FOR EACH ROW
+EXECUTE FUNCTION update_album_genre();
+
+
+CREATE TABLE instructor (
+    id INT PRIMARY KEY,
+    salary INT
+);
+
+INSERT INTO instructor VALUES (3, 1000);
+INSERT INTO instructor VALUES (4, 2000);
+
+SELECT * FROM instructor;
+
+
+
+BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+UPDATE instructor 
+SET salary = (SELECT salary FROM instructor WHERE id = 4)
+WHERE id = 3;
