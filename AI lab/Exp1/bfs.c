@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define nVertices 3
+#define nVertices 5
 
 int queue[nVertices];
 int visited[nVertices];
@@ -13,13 +13,10 @@ void displayMatrix(int matrix[nVertices][nVertices]){
     for(int i = 0; i < nVertices ; i++){
         for(int j = 0; j < nVertices ; j++){
             printf("%d " , matrix[i][j]);
-
         }
-
         printf("\n");
     }
 }
-
 
 void enqueue(int queueElement){
 

@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numpy._typing import NDArray
 
-#modified for exp2 quick sort
+
 c_program_path = "./a.out"
 
 nForExecution = [25,50,75,100]

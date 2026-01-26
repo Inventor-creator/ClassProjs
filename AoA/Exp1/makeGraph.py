@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from numpy._typing import NDArray
 
-#modified for exp2 quick sort
+#modified for exp1 quick sort
 c_program_path = "./a.out"
 
 nForExecution = [25,50,75,100]
@@ -20,11 +20,10 @@ for i in nForExecution:
 
     input_data = f"{numberOfElements}\n"
 
-    sortedStraight = np.sort(np.random.randint(1,10 , size=i))
+    sortedStraight = np.sort(np.random.randint(1,10 , size=i))[::-1]
 
     for j in sortedStraight:
         input_data+=f"{j}\n"
-
 
     process = subprocess.run(
         c_program_path,
@@ -55,14 +54,14 @@ numBestCase = []
 
 #QuickSort
 for i in nForExecution:
-    numBestCase.append(i* np.log2(i))
+    numBestCase.append(i)
 
 for i in nForExecution:
     numberOfElements = i
 
     input_data = f"{numberOfElements}\n"
 
-    sortedStraight = np.sort(np.random.randint(1,10 , size=i))[::-1]
+    sortedStraight = np.sort(np.random.randint(1,10 , size=i))
 
     for j in sortedStraight:
         input_data+=f"{j}\n"
