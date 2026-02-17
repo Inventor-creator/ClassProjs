@@ -1,56 +1,93 @@
 import heapq
 
-def a_star(graph, heuristic, start, goal):
+def aStar(graph, heuristic, start, goal):
 
-    open_list = []
-    heapq.heappush(open_list, (heuristic[start], start))
+    openQueue = []
+    closedList = []
 
+    gCost = {}
+    parent = {}
 
-    g_cost = {start: 0}
+    gCost[start] = 0
+    parent[start] = None
 
+    fStart = gCost[start] + heuristic[start]
+    heapq.heappush(openQueue, (fStart, start))
 
-    parent = {start: None}
+    while len(openQueue) > 0:
 
-    while open_list:
-        _, current = heapq.heappop(open_list)
+        print("\n open List:")
+        for item in openQueue:
+            print("node:", item[1], " f:", item[0])
 
+        currentF, currentNode = heapq.heappop(openQueue)
+        print("\n selected node:", currentNode)
 
-        if current == goal:
+        if currentNode == goal:
+            print("\n reached ")
+
             path = []
-            while current is not None:
-                path.append(current)
-                current = parent[current]
-            return path[::-1], g_cost[goal]
+            node = goal
 
+            while node is not None:
+                path.append(node)
+                node = parent[node]
 
-        for neighbor, weight in graph[current]:
-            tentative_g = g_cost[current] + weight
+            path.reverse()
 
-            if neighbor not in g_cost or tentative_g < g_cost[neighbor]:
-                g_cost[neighbor] = tentative_g
-                f_cost = tentative_g + heuristic[neighbor]
-                heapq.heappush(open_list, (f_cost, neighbor))
-                parent[neighbor] = current
+            print("\nsoln path:")
+            for i in range(len(path)):
+                print(path[i], end="")
+                if i != len(path) - 1:
+                    print(" - >  ", end="")
 
-    return None, float("inf")
+            print("\nTotal Cost:", gCost[goal])
+            return
+
+        closedList.append(currentNode)
+        print("CLOSED List:", closedList)
+
+        neighbors = graph[currentNode]
+
+        for neighbor, cost in neighbors:
+
+            if neighbor in closedList:
+                continue
+
+            tentativeG = gCost[currentNode] + cost
+
+            if neighbor not in gCost:
+                gCost[neighbor] = tentativeG
+                parent[neighbor] = currentNode
+
+                fValue = tentativeG + heuristic[neighbor]
+                heapq.heappush(openQueue, (fValue, neighbor))
+
+            else:
+                if tentativeG < gCost[neighbor]:
+                    gCost[neighbor] = tentativeG
+                    parent[neighbor] = currentNode
+
+                    fValue = tentativeG + heuristic[neighbor]
+                    heapq.heappush(openQueue, (fValue, neighbor))
+
+    print("No solution found")
 
 
 graph = {
-    'A': [('B', 2), ('C', 3)],
-    'B': [('D', 4), ('E', 1)],
-    'C': [('E', 5)],
-    'D': [('G', 3)],
-    'E': [('G', 2)],
-    'G': []
+    0: [(1, 1), (2, 4)],
+    1: [(0, 1), (3, 5), (4, 2)],
+    2: [(0, 4), (4, 3)],
+    3: [(1, 5), (4, 1)],
+    4: [(1, 2), (2, 3), (3, 1)]
 }
+
 heuristic = {
-    'A': 7,
-    'B': 5,
-    'C': 6,
-    'D': 3,
-    'E': 2,
-    'G': 0
+    0: 7,
+    1: 6,
+    2: 4,
+    3: 1,
+    4: 0
 }
 
-
-print(a_star(graph, heuristic, 'A', 'G'))
+aStar(graph, heuristic, 0, 4)
